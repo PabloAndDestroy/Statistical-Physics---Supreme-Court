@@ -4,11 +4,11 @@ This project fits a pairwise maximum-entropy (Ising) model to nine-justice votin
 
 The model uses
 
-$
+$ $
 E(\boldsymbol{\sigma})=-\sum_i h_i\sigma_i-\sum_{i<j}J_{ij}\sigma_i\sigma_j,
 \qquad
 P(\boldsymbol{\sigma})=\frac{e^{-E(\boldsymbol{\sigma})}}{Z}.
-$
+$ $
 
 The Python script runs the C++ executable and creates plots of the input pair-moment matrix, fitted coupling matrix, the relationship between pair moments and couplings, and majority-split probabilities.
 
