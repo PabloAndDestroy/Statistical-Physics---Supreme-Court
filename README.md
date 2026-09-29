@@ -7,7 +7,7 @@ The model uses
 $$
 E(\sigma)=-\sum_i h_i\sigma_i-\sum_{i<j} J_{ij}\sigma_i\sigma_j,
 \qquad
-P(\sigma)=\frac{e^{-E(\boldsymbol{\sigma})}}{Z}.
+P(\sigma)=\frac{e^{-E(\sigma)}}{Z}.
 $$
 
 The Python script runs the C++ executable and creates plots of the input pair-moment matrix, fitted coupling matrix, the relationship between pair moments and couplings, and majority-split probabilities.
