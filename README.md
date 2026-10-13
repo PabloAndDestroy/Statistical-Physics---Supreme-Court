@@ -4,13 +4,25 @@ This project fits a pairwise maximum-entropy (Ising) model to nine-justice votin
 
 The model uses
 
-$$
+$
 E(\boldsymbol{\sigma})=-\sum_i h_i\sigma_i-\sum_{i<j}J_{ij}\sigma_i\sigma_j,
 \qquad
 P(\boldsymbol{\sigma})=\frac{e^{-E(\boldsymbol{\sigma})}}{Z}.
-$$
+$
 
 The Python script runs the C++ executable and creates plots of the input pair-moment matrix, fitted coupling matrix, the relationship between pair moments and couplings, and majority-split probabilities.
+
+## Presentación interactiva
+
+Hay una interfaz React (en español) para explicar el paper y explorar los 9 votos como spines de Ising. El estilo sigue la plantilla de Física EAFIT (`Plantilla_Fisica_EAFIT.pptx`): fondo negro, acento oro `#C9A227`, órbitas azules y logo EAFIT.
+
+```powershell
+cd presentacion
+npm install
+npm run dev
+```
+
+Abre `http://localhost:5173`. Las 13 secciones, el explorador de votos y el detalle visual están en `presentacion/README.md`.
 
 ## Requirements
 
