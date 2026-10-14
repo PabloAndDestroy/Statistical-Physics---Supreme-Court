@@ -229,58 +229,60 @@ function Section({ id }) {
         <div className="kicker">EAFIT · Física estadística</div>
         <h1>Mecánica estadística de la Corte Suprema de Estados Unidos</h1>
         <p className="lead">
-          Cómo un modelo de Ising de entropía máxima, construido solo con correlaciones de
-          pares, describe el voto colectivo de nueve jueces.
+          Nueve personas votan sí o no. Esta charla muestra, paso a paso, cómo un modelo
+          de imanes (Ising) describe ese voto colectivo. No hace falta haber leído el paper.
         </p>
         <p className="authors">
-          Paper: {PAPER.authors}, <em>{PAPER.title}</em>, {PAPER.journal} ({PAPER.year}).
-          Corte analizada: {PAPER.court}, {PAPER.period}, {PAPER.cases} casos.
+          Basado en {PAPER.authors}, <em>{PAPER.title}</em> ({PAPER.year}). Corte: {PAPER.court}, {PAPER.period}, {PAPER.cases} casos.
         </p>
         <div className="grid-3">
-          <div className="card"><div className="stat">9</div><div className="muted">jueces = spines de Ising</div></div>
-          <div className="card"><div className="stat">512</div><div className="muted">configuraciones (2^9)</div></div>
-          <div className="card"><div className="stat">36%</div><div className="muted">unanimidad media en 18 cortes</div></div>
+          <div className="card">
+            <h3>1. El dato</h3>
+            <p>La Corte se pone de acuerdo más de lo que sugiere la polarización.</p>
+          </div>
+          <div className="card">
+            <h3>2. La analogía</h3>
+            <p>Cada juez es un spin +1 o −1, como un imán que solo apunta arriba o abajo.</p>
+          </div>
+          <div className="card">
+            <h3>3. La prueba</h3>
+            <p>Con solo correlaciones de pares se reconstruye cómo votan de verdad.</p>
+          </div>
         </div>
       </>
     );
   }
 
-  if (id === "resumen") {
+  if (id === "enigma") {
     return (
       <>
-        <div className="kicker">Resumen</div>
-        <h2>Ideas más importantes del paper</h2>
-        <ul className="ideas">
-          <li>
-            Cada voto se representa como un spin σᵢ = +1 o −1. El estado de la Corte es un
-            vector de 9 spines: hay 512 patrones posibles.
-          </li>
-          <li>
-            Todas las correlaciones crudas Cᵢⱼ = ⟨σᵢσⱼ⟩ son positivas. Eso no significa que
-            todos los jueces se atraigan: las interacciones directas Jᵢⱼ tienen ambos signos.
-          </li>
-          <li>
-            El modelo de entropía máxima de pares es un vidrio de spin de Ising. Reproduce
-            la distribución de votos, la unanimidad y la información mutua juez–mayoría.
-          </li>
-          <li>
-            La unanimidad (~36–39%) es un fenómeno colectivo. Si votaran independientes,
-            ocurriría ~1% de las veces.
-          </li>
-          <li>
-            Más del 99% de los 512 estados caen en tres pares de valles: unanimidad, cisma
-            5–4 ideológico, y disenso 7–2 de Scalia y Thomas.
-          </li>
-          <li>
-            Los jueces medianos (O’Connor y Kennedy) tienen la mayor influencia sobre la
-            mayoría. Los extremos ideológicos tienen la menor.
-          </li>
-          <li>
-            El modelo de pares captura 95% ± 3% de la multi-información en 18 cortes
-            naturales. Añadir ideología o correlaciones de orden superior no vale la
-            complejidad extra.
-          </li>
-        </ul>
+        <div className="kicker">La pregunta</div>
+        <h2>El enigma: polarización contra unanimidad</h2>
+        <p>
+          La imagen habitual de la Corte Suprema es un tribunal partido: cuatro liberales,
+          cuatro conservadores y un juez bisagra. Uno esperaría muchos empates 5–4.
+        </p>
+        <p>
+          Los datos dicen otra cosa. En más de 50 años, el resultado más frecuente es el
+          <strong> 9–0</strong>: todos votan igual. En la Corte Rehnquist, el 9–0 ocurre
+          ~36–39% de las veces y el 5–4 ~16%.
+        </p>
+        <div className="grid-2">
+          <div className="card">
+            <h3>Si votaran al azar, cada uno por su lado</h3>
+            <p>Hay 512 formas de votar. Solo 2 son unánimes. Eso es el 0.4%.</p>
+            <p>El 5–4 sería lo más común (~49%).</p>
+          </div>
+          <div className="card">
+            <h3>Lo que se observa</h3>
+            <p>El 9–0 es más de 80 veces más frecuente que el azar independiente.</p>
+            <p>Y no son solo “casos fáciles”: muchos 9–0 empezaron con disenso en conferencia.</p>
+          </div>
+        </div>
+        <p className="note">
+          Pregunta de esta charla: ¿qué tipo de interacción entre jueces basta para producir
+          ese consenso, sin meter a mano el contenido de cada caso?
+        </p>
       </>
     );
   }
@@ -288,86 +290,112 @@ function Section({ id }) {
   if (id === "datos") {
     return (
       <>
-        <div className="kicker">Datos</div>
-        <h2>La Corte Suprema y los votos</h2>
+        <div className="kicker">Los actores</div>
+        <h2>Nueve jueces, un sí o un no</h2>
         <p>
-          Una <strong>corte natural</strong> es un periodo con los mismos nueve jueces. El
-          paper se concentra en la segunda Corte Rehnquist (1994–2005, 895 votos), el
-          conjunto más grande, y comprueba el modelo en 18 cortes a lo largo de 50 años.
+          Cada caso llega como una pregunta binaria: ¿se afirma o se revoca la decisión
+          anterior? Cada juez responde sí o no. El lado con cinco o más votos gana.
         </p>
         <p>
-          Cada juez emite sí o no. La definición de sí/no depende del tribunal inferior, así
-          que el paper primero simetriza: {`{σ}`} y {`{−σ}`} son igualmente probables y
-          ⟨σᵢ⟩ = 0. Después estudia votos etiquetados como conservador/liberal.
+          El paper estudia periodos con la misma membresía (cortes naturales). El ejemplo
+          grande es la segunda Corte Rehnquist: 1994–2005, 895 casos, siempre estos nueve.
         </p>
         <div className="grid-2">
           <div className="card">
-            <h3>Orden ideológico (izquierda → derecha)</h3>
+            <h3>De izquierda a derecha, como se suelen ordenar</h3>
             {JUSTICES.map((j) => (
               <div key={j.id} style={{ display: "flex", gap: 8, margin: "6px 0", alignItems: "center" }}>
                 <strong style={{ width: 28 }}>{j.id}</strong>
                 <span>{j.name}</span>
-                <span className={`tag ${j.wing}`}>{j.wing}</span>
+                <span className={`tag ${j.wing}`}>
+                  {j.wing === "liberal" ? "liberal" : j.wing === "swing" ? "bisagra" : "conservador"}
+                </span>
               </div>
             ))}
           </div>
           <div className="card">
-            <h3>Hechos que el modelo debe explicar</h3>
-            <p>La unanimidad es más frecuente que los 5–4 durante más de 50 años.</p>
-            <p>Las correlaciones entre todos los pares son positivas, incluso entre Stevens y Thomas.</p>
-            <p>La unanimidad no parece un conjunto de casos “fáciles”: muchos 9–0 empezaron con disensos en conferencia.</p>
-            <p className="muted">Fuente de votos: Supreme Court Database, Spaeth et al.</p>
+            <h3>El espacio de posibilidades</h3>
+            <p>9 votos binarios → 2⁹ = 512 patrones posibles.</p>
+            <p>Un patrón es, por ejemplo, “todos sí” o “los cuatro liberales en contra y los cinco restantes a favor”.</p>
+            <p>Queremos una probabilidad P para cada uno de esos 512 patrones.</p>
+            <p className="muted">Fuente: Supreme Court Database (Spaeth et al.).</p>
           </div>
         </div>
       </>
     );
   }
 
-  if (id === "fundamentos") {
+  if (id === "spines") {
     return (
       <>
-        <div className="kicker">Fundamentos físicos</div>
-        <h2>De la Corte a un imán de Ising</h2>
+        <div className="kicker">La analogía física</div>
+        <h2>Cada voto es un spin de Ising</h2>
         <p>
-          La analogía no es metafórica: el paper escribe una probabilidad de Boltzmann para
-          los votos y esa probabilidad es exactamente el modelo de Ising.
+          Un spin de Ising es la pieza más simple de un imán: solo puede apuntar “arriba”
+          o “abajo”. El paper hace la misma apuesta con los jueces.
         </p>
         <div className="formula center">
-          σᵢ = +1  (voto A) &nbsp;·&nbsp; σᵢ = −1  (voto B)
+          σᵢ = +1 &nbsp;o&nbsp; σᵢ = −1 &nbsp;para el juez i
         </div>
-        <div className="grid-2">
+        <p>
+          Por ahora el signo solo significa “este lado del caso” frente al otro. Más
+          adelante se puede etiquetar +1 = conservador y −1 = liberal. El estado de la
+          Corte es el vector (σ₁, …, σ₉).
+        </p>
+        <div className="grid-3">
           <div className="card">
-            <h3>Spines</h3>
-            <p>
-              Cada juez es un momento magnético que solo puede apuntar “arriba” o “abajo”.
-              N = 9 no es el límite termodinámico, pero 512 estados se enumeran exactos: no
-              hace falta Monte Carlo.
-            </p>
+            <h3>Imán</h3>
+            <p>Átomos que se alinean o se oponen. El orden aparece aunque cada átomo sea simple.</p>
           </div>
           <div className="card">
-            <h3>Acoplamientos</h3>
-            <p>
-              Jᵢⱼ &gt; 0 favorece que i y j voten igual (ferromagnético). Jᵢⱼ &lt; 0 favorece el
-              voto opuesto (antiferromagnético). El campo hᵢ, cuando existe, empuja a un juez
-              hacia conservador o liberal.
-            </p>
+            <h3>Corte</h3>
+            <p>Jueces que coinciden o disienten. El 9–0 es el análogo de un imán imanado.</p>
           </div>
           <div className="card">
-            <h3>Energía</h3>
-            <p>
-              Los patrones frecuentes son los de baja energía. Competencia entre J de ambos
-              signos produce varios mínimos: un paisaje de vidrio de spin.
-            </p>
-          </div>
-          <div className="card">
-            <h3>Consenso como imanación</h3>
-            <p>
-              Cuando el sistema se ordena (unanimidad o bloque), un sesgo ideológico débil
-              basta para alinear el bloque con el caso, igual que un campo terrestre débil
-              orienta una brújula ya imanada.
-            </p>
+            <h3>Por qué sirve N = 9</h3>
+            <p>No es un gas de 10²³ partículas, pero 512 estados se pueden listar todos. El modelo es exacto, sin simulaciones.</p>
           </div>
         </div>
+        <p className="note">
+          La analogía no es un dibujo: al final la probabilidad de cada patrón de votos
+          será la misma fórmula que usa un imán de Ising.
+        </p>
+      </>
+    );
+  }
+
+  if (id === "correlaciones-c") {
+    const cij = C[pair.i][pair.j];
+    const agree = ((1 + cij) / 2) * 100;
+    const a = JUSTICES[pair.i];
+    const b = JUSTICES[pair.j];
+    return (
+      <>
+        <div className="kicker">Qué se mide primero</div>
+        <h2>Correlación: ¿votan igual estos dos?</h2>
+        <p>
+          Aún no hablamos de “influencia”. Solo contamos, en los 895 casos, si el juez i
+          y el juez j coinciden. Eso se resume en un número Cᵢⱼ entre −1 y +1:
+        </p>
+        <div className="formula center">
+          Cᵢⱼ = ⟨σᵢ σⱼ⟩ &nbsp;→&nbsp; +1 siempre juntos, 0 independientes, −1 siempre opuestos
+        </div>
+        <p>
+          Si C = 0.50, coinciden en el 75% de los casos, porque la fracción de acuerdo es
+          (1 + C) / 2.
+        </p>
+        <div className="card">
+          <h3>Mapa de C en la Corte Rehnquist (haz clic en un par)</h3>
+          <Heatmap matrix={C} mode="C" selected={pair} onSelect={setPair} />
+          <p>
+            <strong>{a.short} y {b.short}:</strong> C = {cij.toFixed(2)}, coinciden cerca del {agree.toFixed(0)}% de las veces.
+          </p>
+        </div>
+        <p className="note">
+          Sorpresa: todas las C son positivas, incluso Stevens (el más liberal) y Thomas
+          (el más conservador). Eso no quiere decir que se atraigan. En la siguiente
+          sección construimos un modelo; después separaremos correlación de interacción.
+        </p>
       </>
     );
   }
@@ -375,30 +403,38 @@ function Section({ id }) {
   if (id === "maxent") {
     return (
       <>
-        <div className="kicker">Principio de máxima entropía</div>
-        <h2>La distribución menos estructurada que respeta los datos</h2>
+        <div className="kicker">Cómo se elige el modelo</div>
+        <h2>El modelo más honesto: máxima entropía</h2>
         <p>
-          Hay infinitas P(σ) compatibles con las correlaciones medidas. Shannon demostró
-          que la única medida consistente de “aleatoriedad” es la entropía.
+          Ya tenemos las 36 correlaciones de pares. Infinitas formas de asignar
+          probabilidad a los 512 patrones coinciden con esas 36 cifras. ¿Cuál elegir?
+        </p>
+        <p>
+          La respuesta de Shannon: quédate con la distribución que tenga más entropía,
+          es decir, la que menos estructura extra inventa. Solo se permite lo que los
+          datos ya mostraron (las Cᵢⱼ).
         </p>
         <div className="formula center">
-          S[P] = − Σ P(σ) ln P(σ)
+          S[P] = − Σ P(σ) ln P(σ) &nbsp; máxima, con ⟨σᵢ σⱼ⟩ = Cᵢⱼ
         </div>
         <p>
-          Se maximiza S con la restricción de reproducir Cᵢⱼ = ⟨σᵢσⱼ⟩ (y, si hay ideología,
-          también ⟨σᵢ⟩). Los multiplicadores de Lagrange son los Jᵢⱼ y los hᵢ. El resultado
-          es la distribución de Boltzmann:
+          Esa receta produce, de forma automática, la distribución de Boltzmann de un
+          modelo de Ising. Baja energía = patrón frecuente. Z solo normaliza para que
+          las 512 probabilidades sumen 1.
         </p>
         <div className="formula center">
-          {"P(σ) = e^{−E(σ)} / Z,  E(σ) = −Σᵢ hᵢ σᵢ − ½ Σᵢ≠ⱼ Jᵢⱼ σᵢ σⱼ"}
+          {"P(σ) = e^{−E(σ)} / Z"}
         </div>
-        <p>
-          No hay parámetros libres extra: una vez fijados los momentos empíricos, P queda
-          determinada. El modelo simetrizado del paper usa hᵢ = 0.
-        </p>
-        <p className="note">
-          Z se calcula sumando las 512 configuraciones. Esta interfaz usa esa suma exacta.
-        </p>
+        <div className="grid-2">
+          <div className="card">
+            <h3>Qué entra</h3>
+            <p>Las correlaciones medidas Cᵢⱼ. Nada sobre el texto de las sentencias.</p>
+          </div>
+          <div className="card">
+            <h3>Qué sale</h3>
+            <p>Una energía E para cada patrón y, con ella, una probabilidad para los 512 estados.</p>
+          </div>
+        </div>
       </>
     );
   }
@@ -410,12 +446,17 @@ function Section({ id }) {
     const b = JUSTICES[pair.j];
     return (
       <>
-        <div className="kicker">Cᵢⱼ frente a Jᵢⱼ</div>
-        <h2>Correlación no es interacción directa</h2>
+        <div className="kicker">El resultado del modelo</div>
+        <h2>Correlacionarse no es atraerse</h2>
         <p>
-          Cᵢⱼ mezcla caminos indirectos (A influye a B a través de C). Jᵢⱼ es la interacción
-          residual cuando el resto de votos se mantiene fijo. Por eso C es todo positivo y
-          J tiene signos mixtos.
+          Dos jueces pueden votar igual porque ambos siguen a un tercero. Cᵢⱼ mezcla todos
+          esos caminos. El acoplamiento Jᵢⱼ es lo que queda cuando el resto de votos se
+          fija: la interacción directa.
+        </p>
+        <p>
+          En un imán, J &gt; 0 es ferromagnético (quieren alinearse) y J &lt; 0 es
+          antiferromagnético (quieren oponerse). El paper encuentra ambos signos, aunque
+          todas las C eran positivas.
         </p>
         <div className="grid-2">
           <div className="card">
@@ -438,11 +479,10 @@ function Section({ id }) {
               : " Interacción directa positiva: tienden a votar juntos."}
           </p>
           <p className="muted">
-            En el paper, e^{J} de Thomas sobre Stevens es ~1.1 (leve atracción directa) y la
-            de Scalia sobre Stevens es ~0.7 (repulsión). El núcleo Scalia–Thomas tiene el J
-            más grande. Las matrices de esta interfaz se reconstruyeron de las Figs. 2 y 3 y
-            del problema inverso de Ising; ilustran la misma física con pequeñas diferencias
-            numéricas.
+            Ejemplo del paper: un voto de Thomas mueve a Stevens un factor eᴶ ≈ 1.1 (leve
+            atracción directa). El de Scalia, ≈ 0.7 (repulsión). Scalia y Thomas tienen el
+            J más grande. Las matrices de esta pantalla se reconstruyeron de las Figs. 2–3;
+            la física es la misma, con pequeñas diferencias numéricas.
           </p>
         </div>
       </>
@@ -452,22 +492,26 @@ function Section({ id }) {
   if (id === "unanimidad") {
     return (
       <>
-        <div className="kicker">Emergencia</div>
-        <h2>La unanimidad sale de los pares</h2>
+        <div className="kicker">Primera prueba del modelo</div>
+        <h2>La unanimidad aparece sola</h2>
         <p>
-          Si cada juez votara independiente con ⟨σᵢ⟩ = 0, el 9–0 tendría probabilidad 2/512 ≈
-          0.4%. En los datos, el 9–0 es ~36–39%, más del doble que el 5–4 (~16%).
+          Nadie le dijo al modelo “prefiere el 9–0”. Solo se le pidió que respetara las
+          correlaciones de pares. Aun así, predice que el unánime es mucho más común que
+          el 5–4.
+        </p>
+        <p>
+          Independientes: 9–0 ≈ 0.4%. Datos: 9–0 ≈ 36–39%, 5–4 ≈ 16%. El modelo de pares
+          cae cerca de esas cifras (~10% de error en el paper).
         </p>
         <MajorityChart />
         <p>
-          El modelo de pares P⁽²⁾ ya produce una masa grande en 9–0. El paper reporta que
-          predice las frecuencias de mayoría con ~10% de error y que la unanimidad es el
-          doble de probable que un 5–4. Eso es un efecto colectivo: no se pone a mano un
-          término de nueve cuerpos.
+          Eso se llama emergencia: un efecto de todo el grupo que no está escrito en ningún
+          juez por separado. Es el mismo mecanismo por el que un imán se ordena aunque cada
+          átomo sea débil.
         </p>
         <p className="note">
           Las barras “Datos” usan las cifras del paper para 5–4 y 9–0; las intermedias son
-          esquemáticas. P⁽²⁾ es el modelo de esta interfaz.
+          esquemáticas. “Pares” es el modelo de esta interfaz.
         </p>
       </>
     );
@@ -476,12 +520,16 @@ function Section({ id }) {
   if (id === "paisaje") {
     return (
       <>
-        <div className="kicker">Paisaje energético</div>
-        <h2>Tres valles organizan casi todos los votos</h2>
+        <div className="kicker">Cómo se organizan los 512 patrones</div>
+        <h2>Casi todo cae en tres formas de votar</h2>
         <p>
-          J de ambos signos frustra el sistema. Aparecen varios mínimos locales: invertir
-          cualquier juez sube E. En la Corte Rehnquist, 508 de 512 estados caen en 2×3
-          valles.
+          Imagina la energía como un terreno: los valles son patrones estables. Invertir
+          cualquier juez sube la ladera. Como hay J positivos y negativos, hay varios
+          valles, no uno solo.
+        </p>
+        <p>
+          En la Corte Rehnquist, 508 de 512 estados viven en tres pares de valles (cada
+          uno y su inverso, porque + y − son equivalentes si no etiquetamos ideología).
         </p>
         <div className="grid-3">
           {PROTOTYPES.map((p) => (
@@ -493,12 +541,10 @@ function Section({ id }) {
           ))}
         </div>
         <p>
-          El paper proyecta los votos sobre dos parámetros de orden: solapamiento con el
-          unánime m⁽¹⁾ y con el 5–4 ideológico m⁽²⁾. La probabilidad se concentra en el
-          borde de ese cuadrado: la Corte vive en la competencia entre consenso e ideología,
-          no en un centro desordenado.
+          En corto: la Corte no vaga por un mar desordenado. Oscila entre consenso total,
+          cisma izquierda/derecha, y un núcleo Scalia–Thomas que a veces se despega.
         </p>
-        <VoteExplorer compact />
+        <p className="note">La siguiente pantalla deja mover los nueve votos a mano.</p>
       </>
     );
   }
@@ -508,13 +554,17 @@ function Section({ id }) {
     const maxS = Math.max(...SUSCEPTIBILITY);
     return (
       <>
-        <div className="kicker">Influencia</div>
-        <h2>Quién mueve a la mayoría</h2>
+        <div className="kicker">Quién cuenta más</div>
+        <h2>Los jueces del centro mueven la mayoría</h2>
         <p>
-          I(σᵢ; γ) es la información mutua entre el voto del juez y la decisión de la Corte.
-          La susceptibilidad χ mide cómo cambia ⟨γ⟩ si ese juez “se inclina” un poco sin
-          votar. En el modelo de equilibrio, ambas ideas coinciden con la correlación
-          juez–mayoría.
+          Pregunta práctica: si te digo cómo votó un juez, ¿cuánto aprendes sobre quién
+          ganó el caso? Eso es la información mutua I, en bits. 1 bit sería “con su voto
+          ya sé el resultado”.
+        </p>
+        <p>
+          Otra pregunta: si ese juez se inclina un poco (sin votar todavía), ¿cuánto se
+          mueve la mayoría? Eso es la susceptibilidad. En este modelo las dos ideas van
+          juntas.
         </p>
         <div className="grid-2">
           <div className="card">
@@ -559,10 +609,10 @@ function Section({ id }) {
           </div>
         </div>
         <p>
-          O’Connor y Kennedy: 0.55 bits. Stevens: 0.14 bits. Thomas tiene I similar a Scalia
-          (0.28) pero susceptibilidad tan baja como Stevens. Rehnquist predice bien la
-          mayoría (tercero en I) y solo es mediano en susceptibilidad: el Chief Justice
-          controla agenda y ponencias, no necesariamente el resultado.
+          O’Connor y Kennedy: 0.55 bits (los más informativos). Stevens: 0.14 bits. Thomas
+          predice parecido a Scalia (0.28 bits) pero mueve poco la mayoría: está en el
+          extremo. Rehnquist predice bien y no es el más susceptible: el presidente de la
+          Corte controla la agenda, no siempre el marcador.
         </p>
       </>
     );
@@ -571,31 +621,32 @@ function Section({ id }) {
   if (id === "ideologia") {
     return (
       <>
-        <div className="kicker">Modelo con etiquetas</div>
-        <h2>La ideología emerge de los pares</h2>
+        <div className="kicker">Etiquetas izquierda / derecha</div>
+        <h2>La ideología se puede poner después</h2>
         <p>
-          Spaeth et al. etiquetan cada voto como liberal (σ = −1) o conservador (σ = +1).
-          Entonces ⟨σᵢ⟩ ya no es cero: Stevens ≈ {IDEOLOGY_MEAN.JS}, Thomas ≈ {IDEOLOGY_MEAN.CT}.
-          El modelo añade campos hᵢ.
+          Hasta ahora ignoramos si un voto era “liberal” o “conservador”: solo importaba
+          si coincidían. La base de Spaeth sí etiqueta cada voto. Entonces Stevens vota
+          liberal en promedio ({IDEOLOGY_MEAN.JS}) y Thomas conservador ({IDEOLOGY_MEAN.CT}).
+          El modelo añade un empujón hᵢ a cada juez, como un campo magnético.
         </p>
         <div className="grid-2">
           <div className="card">
-            <h3>Lo que cambia</h3>
-            <p>El valle unánime conservador pesa ~25% más que el liberal.</p>
-            <p>Sigue existiendo un 5–4 con mayoría conservadora, y uno menor al revés.</p>
-            <p>El 7–2 contra Scalia y Thomas queda de un solo lado: ambos son conservadores muy estables.</p>
+            <h3>Lo que sí cambia</h3>
+            <p>El 9–0 conservador pesa ~25% más que el 9–0 liberal.</p>
+            <p>Hay un 5–4 con mayoría conservadora, y uno más raro al revés.</p>
+            <p>El 7–2 contra Scalia y Thomas queda de un solo lado: ambos son conservadores estables.</p>
           </div>
           <div className="card">
-            <h3>Lo que no cambia</h3>
-            <p>Los Jᵢⱼ del modelo ideológico correlacionan 0.98 con los del modelo simetrizado.</p>
-            <p>Scalia y Stevens no votan en contra solo por sesgos opuestos: hay interacción directa negativa.</p>
-            <p>El modelo con campos captura 92% ± 3% de la multi-información.</p>
+            <h3>Lo que casi no cambia</h3>
+            <p>Los J del modelo con ideología correlacionan 0.98 con los del modelo sin etiquetas.</p>
+            <p>Scalia y Stevens no se oponen solo por sesgos: sigue habiendo J negativo entre ellos.</p>
+            <p>Las etiquetas añaden poco una vez el grupo ya está ordenado.</p>
           </div>
         </div>
-        <p>
-          Una vez la Corte se polariza de forma colectiva, un sesgo débil alinea ese bloque
-          con el contenido izquierda/derecha del caso. Por eso las etiquetas ideológicas
-          añaden poco poder predictivo.
+        <p className="note">
+          Analogía: un campo terrestre débil no imanaría una brújula de átomos sueltos,
+          pero sí orienta un imán que ya está ordenado. Los sesgos individuales son débiles;
+          el orden es colectivo.
         </p>
       </>
     );
@@ -604,24 +655,32 @@ function Section({ id }) {
   if (id === "parcimonia") {
     return (
       <>
-        <div className="kicker">Selección de modelo</div>
-        <h2>El modelo de pares es el más parsimonioso</h2>
+        <div className="kicker">¿Más parámetros?</div>
+        <h2>Los pares ya explican casi todo</h2>
         <p>
-          Añadir correlaciones de orden 4 mejora la verosimilitud ~0.2 bits por caso, pero
-          suma 126 parámetros. Con K = 895, la penalización bayesiana (~ (ℓ/2) log₂ K) es
-          ~0.69 bits: el extra no se justifica.
+          Uno podría sospechar que hacen falta tríos o cuartetos de jueces (interacciones
+          de tres y cuatro cuerpos), o los campos ideológicos. El paper los prueba y
+          pregunta: ¿la mejora vale los parámetros extra?
         </p>
-        <p>
-          El modelo ideológico gana ~0.3 bits por caso con 9 campos, pero hay que pagar la
-          información de etiquetar cada caso (divergencia de Kullback–Leibler ≈ 0.3 bits).
-          La longitud de descripción total queda casi igual a la del modelo simetrizado.
-        </p>
-        <div className="card">
-          <h3>Fracción de multi-información capturada</h3>
-          <p>F = (S₁ − S₂) / I₉ = 0.95 ± 0.03 en las 18 cortes naturales (datos simetrizados).</p>
-          <p>Cota conservadora con la cota de Ma: F ≥ 0.83 ± 0.03.</p>
-          <p>La entropía de los votos es S ≈ 5 bits: de 512 patrones, la Corte usa ~32 de forma efectiva.</p>
+        <div className="grid-2">
+          <div className="card">
+            <h3>Añadir grupos de 4</h3>
+            <p>Mejora poco (~0.2 bits por caso) y suma 126 parámetros. Con 895 casos, la penalización estadística es mayor que la ganancia.</p>
+          </div>
+          <div className="card">
+            <h3>Añadir etiquetas ideológicas</h3>
+            <p>Gana ~0.3 bits, pero hay que pagar el costo de etiquetar cada caso. La cuenta total queda casi igual.</p>
+          </div>
         </div>
+        <div className="card">
+          <h3>Cuánto de lo colectivo capturan los pares</h3>
+          <p>El 95% ± 3% de la información compartida entre los nueve jueces, en 18 cortes a lo largo de 50 años.</p>
+          <p>La entropía de los votos es ~5 bits: de 512 patrones, la Corte usa de forma efectiva unos 32.</p>
+        </div>
+        <p className="note">
+          En corto: el modelo chico no es una caricatura. Es la descripción más económica
+          que sobrevive a una comparación honesta.
+        </p>
       </>
     );
   }
@@ -630,15 +689,19 @@ function Section({ id }) {
     return (
       <>
         <div className="kicker">Cierre</div>
-        <h2>Qué se lleva uno del paper</h2>
+        <h2>Qué aprendimos, en orden</h2>
         <ul className="ideas">
-          <li>Un grupo político pequeño admite una teoría cuantitativa de mecánica estadística, no solo una analogía.</li>
-          <li>Las correlaciones positivas esconden interacciones de ambos signos. El problema inverso de Ising las separa.</li>
-          <li>Consenso y polarización son orden colectivo. Los sesgos individuales son demasiado débiles para producirlos solos.</li>
-          <li>Tres prototipos —unanimidad, 5–4 ideológico, núcleo Scalia–Thomas— organizan el espacio de votos.</li>
-          <li>La influencia se concentra en los jueces medianos, como dice la ciencia política, y el modelo lo mide en bits y en susceptibilidad.</li>
+          <li>La Corte se pone de acuerdo mucho más de lo que permitiría el voto independiente. Ese es el hecho que hay que explicar.</li>
+          <li>Un sí/no se puede tratar como un spin. La probabilidad de cada patrón de 9 votos es la de un modelo de Ising.</li>
+          <li>Todas las correlaciones crudas son positivas. Las interacciones directas J no: hay atracción y hay rechazo.</li>
+          <li>Con solo pares aparece la unanimidad y tres valles (9–0, 5–4, núcleo Scalia–Thomas).</li>
+          <li>Quien más informa el resultado es el juez del centro, no el extremo ideológico.</li>
+          <li>Etiquetar liberal/conservador o añadir interacciones de muchos cuerpos no paga: los pares ya capturan ~95% de la estructura colectiva.</li>
         </ul>
-        <p className="lead">Siguiente: el explorador, para mover los nueve spines y ver energía, probabilidad y valle.</p>
+        <p className="lead">
+          Un grupo político de nueve personas admite una teoría cuantitativa de mecánica
+          estadística. La analogía con el imán, en este caso, es una ecuación.
+        </p>
       </>
     );
   }
@@ -646,18 +709,19 @@ function Section({ id }) {
   return (
     <>
       <div className="kicker">Laboratorio</div>
-      <h2>Explorador de votos de la Corte Rehnquist</h2>
+      <h2>Mueve los nueve votos</h2>
       <p>
-        Cada clic invierte un spin. La energía usa los J reconstruidos del paper. Baja
-        energía = alta probabilidad según {"P = e^{−E}/Z"}.
+        Cada clic invierte un juez. La energía E usa los J del modelo. Recuerda:
+        {" P = e^{−E}/Z"}, así que menor E = patrón más probable. ΔE es lo que sube o
+        baja la energía si solo cambia ese juez.
       </p>
       <VoteExplorer />
       <div className="card">
-        <h3>Cómo leerlo en clase</h3>
-        <p>1. Parte del 9–0 y mira que todos los ΔE son positivos: es un mínimo.</p>
-        <p>2. Carga el 5–4 ideológico: también es mínimo, con energía más alta.</p>
-        <p>3. Carga el 7–2 de Scalia y Thomas: el tercer valle.</p>
-        <p>4. Un patrón aleatorio suele tener E mayor y al menos un flip que baja la energía: cae hacia un prototipo.</p>
+        <h3>Una ruta de 4 clics</h3>
+        <p>1. Deja el 9–0: todos los ΔE son positivos. Estás en el valle más profundo.</p>
+        <p>2. Carga el 5–4 ideológico: otro valle, con E menos negativa (menos probable que el unánime).</p>
+        <p>3. Carga el 7–2 de Scalia y Thomas: el tercer prototipo.</p>
+        <p>4. Pulsa Azar: casi siempre hay un juez cuyo ΔE es negativo. Ese flip te acerca a un valle.</p>
       </div>
     </>
   );

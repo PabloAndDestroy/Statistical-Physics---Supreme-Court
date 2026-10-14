@@ -37,19 +37,22 @@ La interfaz copia el lenguaje visual de `Plantilla_Fisica_EAFIT.pptx` (Escuela d
 
 ### Contenido
 
+La charla está ordenada para quien no ha leído el paper: primero el hecho, luego la analogía, el modelo y al final las pruebas.
+
 1. Portada
-2. Resumen e ideas más importantes
-3. La Corte y los datos
-4. Fundamentos físicos
-5. Entropía máxima e Ising
-6. Correlaciones vs. acoplamientos (mapas C y J clicables)
-7. Unanimidad emergente
-8. Paisaje energético
-9. Influencia de los jueces
-10. Ideología
-11. Parcimonía del modelo
-12. Conclusiones
-13. Explorador de votos (invierte spines, ve energía y valle)
+2. El enigma de los votos (polarización vs. unanimidad)
+3. Nueve jueces, sí o no
+4. De votos a spines
+5. Qué miden las correlaciones (mapa C)
+6. El modelo más honesto (máxima entropía)
+7. Correlación vs. interacción (mapas C y J)
+8. De dónde sale la unanimidad
+9. Tres formas de votar
+10. Explorador de votos
+11. Quién mueve la mayoría
+12. ¿Y la ideología?
+13. ¿Hace falta un modelo más grande?
+14. Qué aprendimos
 
 Navega con la barra lateral, Anterior/Siguiente o las flechas del teclado.
 
